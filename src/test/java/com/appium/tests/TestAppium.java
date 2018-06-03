@@ -12,11 +12,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.appium.pages.HomePage;
 import com.appium.pages.LoginPage;
@@ -25,6 +25,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
@@ -36,13 +37,14 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+@Listeners(ListenerDemo.class)
 public class TestAppium {
 
-	private AndroidDriver<MobileElement> driver;
+	public AndroidDriver<MobileElement> driver;
 	private LoginPage loginPage;
 	private HomePage homePage;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, getPropertyValue("PLATFORM_VERSION"));
@@ -53,6 +55,7 @@ public class TestAppium {
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getPropertyValue("APP_PACKAGE"));
 		driver = new AndroidDriver<>(new URL(getPropertyValue("APPIUM_SERVER_URL")), capabilities);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.rotate(ScreenOrientation.PORTRAIT);
 		loginPage = new LoginPage();
 		PageFactory.initElements(
 				new AppiumFieldDecorator(driver, Integer.parseInt(getPropertyValue("IMPLICIT_WAIT")), TimeUnit.SECONDS),
@@ -89,8 +92,8 @@ public class TestAppium {
 		assertEquals(currentActivity, homePage.activity);
 	}
 
-	// @Test
-	public void Test001_selectTourFromHome() {
+	@Test
+	public void selectTourFromHome() {
 		waitForElement(homePage.plan);
 		homePage.plan.click();
 		waitForElement(homePage.discover);
@@ -115,7 +118,7 @@ public class TestAppium {
 	}
 
 	@Test
-	public void Test002_changingRadius() {
+	public void changingRadius() {
 		// check the page if you are on currentPage
 		waitForElement(homePage.bikingIcon);
 		homePage.bikingIcon.click();
@@ -134,7 +137,7 @@ public class TestAppium {
 	}
 
 	@Test
-	public void Test003_changingDifficulty() {
+	public void changingDifficulty() {
 		waitForElement(homePage.bikingIcon);
 		homePage.bikingIcon.click();
 		homePage.fitnessLevel.click();
@@ -152,7 +155,7 @@ public class TestAppium {
 	}
 	
 	@Test
-	public void Test004_startTracking() {
+	public void startTracking() {
 		waitForElement(homePage.map);
 		homePage.map.click();
 		homePage.startTrackingButton.click();
@@ -162,7 +165,7 @@ public class TestAppium {
 	}
 	
 	@Test
-	public void Test005_planTest() {
+	public void planTest() {
 		waitForElement(homePage.plan);
 		homePage.plan.click();
 		System.out.println(homePage.selectSportActivity.getText());
@@ -179,22 +182,32 @@ public class TestAppium {
 
 	@AfterMethod
 	public void logout() {
+		if(ListenerDemo.testStatus==1) {
+			takeScreenShot(ListenerDemo.testName);
+		}
 		waitForElement(homePage.profile);
 		homePage.profile.click();
 		waitForElement(homePage.profile);
 		homePage.settings.click();
 		bottomTopswipe(3000);
 		homePage.logout.click();
+		if(ListenerDemo.testName=="startTracking") {
+		homePage.yesButton.click();
+		}
 		waitForElement(loginPage.termsAndConditions);
 
 	}
 
-	@AfterClass
-	public void tearDown() {
+	@AfterClass(alwaysRun = true)
+	public void tearDown(){
+		if(ListenerDemo.testStatus==2) {
+			takeScreenShot(ListenerDemo.testName);
+		}
 		driver.closeApp();
 		driver.quit();
 
 	}
+	
 
 	public void takeScreenShot(String fileName) {
 		File file = new File(fileName + ".png");

@@ -112,4 +112,8 @@ public class HomePage {
 	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.View[1]/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[4]/android.widget.ImageView")
 	public MobileElement selectFourthSportActivity;
 	
+	@AndroidFindBy(id = "android:id/button1")
+	public MobileElement yesButton;
+
+	
 	}
