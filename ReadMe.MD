@@ -13,9 +13,9 @@
 
 ## *Project Architecture* 
 -src/test/java&nbsp;
----com.appium.pages&nbsp; 
------HomePage&nbsp;
------LoginPage&nbsp;
+---com.appium.pages\
+-----HomePage\
+-----LoginPage\
 ---com.appium.tests&nbsp;
 -----ListenerDemo&nbsp;
 -----TestAppium&nbsp;
