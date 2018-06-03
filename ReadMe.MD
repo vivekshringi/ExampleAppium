@@ -3,19 +3,35 @@
 - Maven
 - testng
 - Appium Server
-- Appium java client 
+- Appium java client
+- check appium doctor to check if all appium components are installed 
+- to check elements locator use inspector session 
 
 ## *IDE used*
 - Eclipse 
+- testng plugin
 
 ## *Project Architecture* 
+src/test/java
+---com.appium.pages 
+-----HomePage
+-----LoginPage
+---com.appium.tests
+-----ListenerDemo
+-----TestAppium
+src/test/resources
+-----de.komoot.android.apk
+-----System.properties
+pom.xml
+testng.xml
+ReadMe.MD
 
-### *Resources* 
-- apk files for installation on target device 
+
+### *Resources Folder* 
+- apk file for installation on target device 
 - System properties to provide all desired capabilities and Test data - Separate file like csv,xml can be created for providing bulk test data
 
 ### *TestAppium.java*
-- All supporting functions - Later on it can be switched to Test Base file 
 - Initializing driver 
 - All tests 
 - Login Test - Verify successfully login to application 
@@ -25,6 +41,7 @@
 - Verify Starting and Stop tracking 
 - Verify Selecting different activities in plan screen
 - Logout is successful
+- All supporting functions - Later on it can be switched to Test Base file 
 
 ### *Page Object Classes LoginPage and Home Page* 
 - All mobile elements 
