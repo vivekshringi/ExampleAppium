@@ -14,7 +14,7 @@
 - apk files for installation on target device 
 - System properties to provide all desired capabilities and Test data - Separate file like csv,xml can be created for providing bulk test data
 
-### *TestAppium*
+### *TestAppium.java*
 - All supporting functions - Later on it can be switched to Test Base file 
 - Initializing driver 
 - All tests 
@@ -26,7 +26,7 @@
 - Verify Selecting different activities in plan screen
 - Logout is successful
 
-### *Page Object Classes* 
+### *Page Object Classes LoginPage and Home Page* 
 - All mobile elements 
 - Activities
 
