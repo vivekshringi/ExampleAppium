@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAll">
+<listeners>
+<listener class-name="com.appium.tests.ListenerDemo"/>
+</listeners>
+	<test name="order">
+		<classes>
+			<class name="com.appium.tests.TestAppium" />
+		</classes>
+	</test>
+</suite>
