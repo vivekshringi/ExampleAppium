@@ -38,10 +38,10 @@ mvn test
 or run testng.xml from the project
 
 ## *Tasks Left* 
-- Fail Tests should fetch screenshot - *Done*
-- Special handling on logout for planing related test - *Done*
-- Always change orientation to portrait - *Done*
+- ~~Fail Tests should fetch screenshot~~ - *Done*
+- ~~Special handling on logout for planing related test~~ - *Done*
+- ~~Always change orientation to portrait~~ - *Done*
 - Add efficient tests for wait for element to be present - *In Progress* 
 - More to do on error handling part- *In Progress*
-- How to continue running tests if test fails- *Done*
+- ~~How to continue running tests if test fails~~- *Done*
  
