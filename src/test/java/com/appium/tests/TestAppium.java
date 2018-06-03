@@ -38,7 +38,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(ListenerDemo.class)
-public class TestAppium {
+public class TestAppium{
 
 	public AndroidDriver<MobileElement> driver;
 	private LoginPage loginPage;
@@ -68,7 +68,7 @@ public class TestAppium {
 	}
 
 	@BeforeMethod
-	public void loginTest() throws InterruptedException {
+	public void verifyLogin() throws InterruptedException {
 		waitForElement(loginPage.termsAndConditions);
 		String termsText = loginPage.termsAndConditions.getText();
 		assertEquals(termsText, getPropertyValue("TERMS_TEXT"));
@@ -93,7 +93,7 @@ public class TestAppium {
 	}
 
 	@Test
-	public void selectTourFromHome() {
+	public void verifySelectingDifferentTours() {
 		waitForElement(homePage.plan);
 		homePage.plan.click();
 		waitForElement(homePage.discover);
@@ -118,7 +118,7 @@ public class TestAppium {
 	}
 
 	@Test
-	public void changingRadius() {
+	public void verifyChangingRadius() {
 		// check the page if you are on currentPage
 		waitForElement(homePage.bikingIcon);
 		homePage.bikingIcon.click();
@@ -137,7 +137,7 @@ public class TestAppium {
 	}
 
 	@Test
-	public void changingDifficulty() {
+	public void verifychangingDifficulty() {
 		waitForElement(homePage.bikingIcon);
 		homePage.bikingIcon.click();
 		homePage.fitnessLevel.click();
@@ -208,7 +208,7 @@ public class TestAppium {
 
 	}
 	
-
+//All supporting function
 	public void takeScreenShot(String fileName) {
 		File file = new File(fileName + ".png");
 		File tmpFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
