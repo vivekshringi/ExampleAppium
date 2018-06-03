@@ -34,6 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -147,8 +148,8 @@ public class TestAppium{
 		int excludingEasyCount = countTours(homePage.tourFound.getText());
 		homePage.intermediateFitnessLevel.click();
 		int difficultCount = countTours(homePage.tourFound.getText());
-		waitForElementToDisappear(By.id("de.komoot.android:id/dtdifbv_difficulty_easy_selected_v"));
-		waitForElementToDisappear(By.id("de.komoot.android:id/dtdifbv_difficulty_intermediate_selected_v"));
+		assertTrue(isElementNotPresent(By.id("de.komoot.android:id/dtdifbv_difficulty_easy_selected_v")));
+		assertTrue(isElementNotPresent(By.id("de.komoot.android:id/dtdifbv_difficulty_intermediate_selected_v")));
 		assertTrue(allToursCount >= excludingEasyCount);
 		assertTrue(excludingEasyCount >= difficultCount);
 		homePage.navigationBack.click();
@@ -209,7 +210,7 @@ public class TestAppium{
 	}
 	
 //All supporting function
-	public void takeScreenShot(String fileName) {
+	private void takeScreenShot(String fileName) {
 		File file = new File(fileName + ".png");
 		File tmpFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
@@ -225,7 +226,7 @@ public class TestAppium{
 		return file.getAbsolutePath();
 	}
 
-	public String getPropertyValue(String key) {
+	private String getPropertyValue(String key) {
 		String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		String appConfigPath = rootPath + "System.properties";
 
@@ -238,17 +239,12 @@ public class TestAppium{
 		return appProps.getProperty(key);
 	}
 
-	public void waitForElement(MobileElement element) {
+	private void waitForElement(MobileElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
-
-	public void waitForElementToDisappear(By by) {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
-	}
-
-	public void bottomTopswipe(int timeduration) {
+	
+	private void bottomTopswipe(int timeduration) {
 		Dimension size = driver.manage().window().getSize();
 		System.out.println(size);
 		int starty = (int) (size.height * 0.60);
@@ -259,8 +255,17 @@ public class TestAppium{
 
 	}
 
-	public int countTours(String Text) {
+	private int countTours(String Text) {
 		return Integer.parseInt(Text.substring(0, Text.length() - 14));
+	}
+	
+	private boolean isElementNotPresent(By by) {
+		try {
+			driver.findElement(by);
+			return false;
+		} catch (org.openqa.selenium.NoSuchElementException e) {
+			return true;
+		}
 	}
 
 }

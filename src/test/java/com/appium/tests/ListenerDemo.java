@@ -32,7 +32,6 @@ public class ListenerDemo extends TestAppium implements ITestListener {
 	    	System.out.println("The name of the testcase is failed");
 	    	testStatus=Result.getStatus();
 	    testName=Result.getMethod().getMethodName();
-
 	    	
 	    }		
 
