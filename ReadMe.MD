@@ -12,19 +12,31 @@
 - testng plugin
 
 ## *Project Architecture* 
--src/test/java&nbsp;
+-src/test/java\
+
 ---com.appium.pages\
+
 -----HomePage\
+
 -----LoginPage\
----com.appium.tests&nbsp;
------ListenerDemo&nbsp;
------TestAppium&nbsp;
-src/test/resources&nbsp;
------de.komoot.android.apk&nbsp;
------System.properties&nbsp;
-pom.xml&nbsp;
-testng.xml&nbsp;
-ReadMe.MD&nbsp;
+
+---com.appium.tests\
+
+-----ListenerDemo\
+
+-----TestAppium\
+
+src/test/resources\
+
+-----de.komoot.android.apk\
+
+-----System.properties\
+
+pom.xml\
+
+testng.xml\
+
+ReadMe.MD\
 
 
 ### *Resources Folder* 
