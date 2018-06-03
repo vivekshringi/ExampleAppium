@@ -1,20 +1,20 @@
-#*Project Details - An Appium Example*
-##*Tools used* 
+# *Project Details - An Appium Example*
+## *Tools used* 
 - Maven
 - testng
 - Appium Server
 - Appium java client 
 
-##*IDE used*
+## *IDE used*
 - Eclipse 
 
-##*Project Architecture* 
+## *Project Architecture* 
 
-###*Resources* 
+### *Resources* 
 - apk files for installation on target device 
 - System properties to provide all desired capabilities and Test data - Separate file like csv,xml can be created for providing bulk test data
 
-###*TestAppium*
+### *TestAppium*
 - All supporting functions - Later on it can be switched to Test Base file 
 - Initializing driver 
 - All tests 
@@ -26,18 +26,18 @@
 - Verify Selecting different activities in plan screen
 - Logout is successful
 
-###*Page Object Classes* 
+### *Page Object Classes* 
 - All mobile elements 
 - Activities
 
-##*How to run tests* 
+## *How to run tests* 
 ```
 mvn test
 ```
 
 or run testng.xml from the project
 
-##*Tasks Left* 
+## *Tasks Left* 
 - Fail Tests should fetch screenshot - *Done*
 - Special handling on logout for planing related test - *Done*
 - Always change orientation to portrait - *Done*
