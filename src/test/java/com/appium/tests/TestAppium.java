@@ -114,7 +114,7 @@ public class TestAppium {
 		assertTrue(allToursCount >= bikingTourCount);
 	}
 
-	// @Test
+	@Test
 	public void Test002_changingRadius() {
 		// check the page if you are on currentPage
 		waitForElement(homePage.bikingIcon);
@@ -133,7 +133,7 @@ public class TestAppium {
 		homePage.navigationBack.click();
 	}
 
-	//@Test
+	@Test
 	public void Test003_changingDifficulty() {
 		waitForElement(homePage.bikingIcon);
 		homePage.bikingIcon.click();
@@ -159,6 +159,22 @@ public class TestAppium {
 		waitForElement(homePage.startCameraButton);
 		new TouchAction(driver).press(homePage.stopTrackingButton).waitAction(5000).release().perform();
 		waitForElement(homePage.startTrackingButton);
+	}
+	
+	@Test
+	public void Test005_planTest() {
+		waitForElement(homePage.plan);
+		homePage.plan.click();
+		System.out.println(homePage.selectSportActivity.getText());
+		assertEquals(homePage.selectSportActivity.getText(),getPropertyValue("BIKE_TOUR"));
+		homePage.selectDifferentSportActivity.click();
+		waitForElement(homePage.selectThirdSportActivity);
+		homePage.selectThirdSportActivity.click();
+		System.out.println(homePage.selectSportActivity.getText());
+		assertEquals(homePage.selectSportActivity.getText(),getPropertyValue("MOUNTAIN_BIKING"));
+		homePage.selectFourthSportActivity.click();
+		System.out.println(homePage.selectSportActivity.getText());
+		assertEquals(homePage.selectSportActivity.getText(),getPropertyValue("ROAD_CYCLING"));
 	}
 
 	@AfterMethod
